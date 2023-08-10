@@ -12,7 +12,7 @@ class ItemTests {
 
     @BeforeEach
     void setUp() {
-         item = new Item("Book", 10.99);
+         item = new Item("Book", 10.99,1);
     }
 
     @Test
@@ -22,10 +22,35 @@ class ItemTests {
     }
 
     @Test
-    public void testGetPrice() {
+    public void testGetPrice(){
 
-        assertEquals(2.49, item.getPrice(), 0.001, "Item price should match");
+        assertEquals(10.99, item.getPrice(), 0.001, "Item price should match");
     }
+
+    @Test
+    public void testGetQuantity(){
+
+        assertEquals(1, item.getQuantity(), "Item quantity should match");
+    }
+
+    @Test
+    void testNameFail(){
+        Exception exMessage = assertThrows(IllegalArgumentException.class, () -> {new Item("Bo", 15.99, 1);});
+        assertEquals("This is not a valid name. All Item contains names of 3 letters or above can be added", exMessage.getMessage());
+    }
+
+    @Test
+    void testPriceFail(){
+        Exception exMessage = assertThrows(IllegalArgumentException.class, () -> {new Item("Book", 0, 1);});
+        assertEquals("This is not a valid price. All Item prices above 0 can be added ", exMessage.getMessage());
+    }
+
+    @Test
+    void testQuantityFail(){
+        Exception exMessage = assertThrows(IllegalArgumentException.class, () -> {new Item("Book", 15.99, 0);});
+        assertEquals("This is not a valid quantity. Only Items with a quantity of 1 or above can be added", exMessage.getMessage());
+    }
+
 
     @AfterEach
     void tearDown() {
