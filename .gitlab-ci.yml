@@ -1,5 +1,7 @@
 run_tests:
-  #Gitlab Runners use Docker containers to execute our jobs, so we need to run a container based on an image
+  # GitLab Runners use Docker containers to execute jobs, so we need to run a container based on an image
   image: maven:3.8.3-openjdk-17
-  script: # Runs the Maven clean phase and the package phase that then runs all our test
+  script: # Runs the Maven clean phase and the package phase that then runs all our tests
     - mvn clean package
+  only:
+    - external_pull_requests
