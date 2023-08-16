@@ -1,9 +1,10 @@
 name: CI-CD Shopping Cart Pipeline
 
-run_tests:
-#Gitlab Runners use Docker containers to execute our jobs, so we need to run a container based on an image
-  image: openjdk:18
-  before_script: #runs before script and in this section we are updating package list and installing our build tool Maven
-    - apt-get update && apt-get install maven
-  script: # Runs the Maven clean phase and the package phase that then runs all our test
-    - mvn clean package
+jobs:
+  run_tests:
+  #Gitlab Runners use Docker containers to execute our jobs, so we need to run a container based on an image
+    image: openjdk:18
+    before_script: #runs before script and in this section we are updating package list and installing our build tool Maven
+      - apt-get update && apt-get install maven
+    script: # Runs the Maven clean phase and the package phase that then runs all our test
+      - mvn clean package
