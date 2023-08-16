@@ -3,7 +3,9 @@ package ie.atu.shopping_cart;
 import java.util.ArrayList;
 import java.util.List;
 public class ShoppingCart {
+
 //integration with gitlab should be working this is the test
+
     private List<Item> items;
     private int quantity;
 
